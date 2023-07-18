@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title><%= title %></title>
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="styleSheet" href="/CSS/home.css">
+    </head>
+    <body>
+        <div id="framming">
+            <h1 id="heading">To-do App</h1><hr id="main-hr">
+            <div id="form">
+                <form id="main" action="/create-content" method="POST">
+                                 <!-- Discription part  -->
+                        <div  id="Discription" class="hover"><h2>Discription<input type="textarea"
+                                id="description" name="Discription"
+                                placeholder="What do you need to do ?"
+                                required></h2>
+                        </div>
+                               <!-- Category part -->
+                        <div id="cat-date">
+                        <div id="Category" ><h2 class="word-pos">
+                            <label for="Category"> Category:  &nbsp;</label>
+                            <select name="Category" id="option" required>
+                                <option value="" disabled  selected>Choose a Category</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="School">School</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Other">Other</option>
+                            </select></h2>
+                        </div>
+                                <!-- Due date Part -->
+                        <div id="Date" ><h2 class="word-pos"><label for="start" >Due Date:</label>
+                            <input type="date"  name="Date" required></h2>
+                        </div>
+                    </div>
+                    <div id="submit">
+                        <button type="submit" id="submit-button"><i class="fas fa-plus"></i>   Add task</button>
+                    </div>
+                </form>
+            </div>
+            
+                            <!-- To-do list -->
+                <div>
+                    <form action="delete-to-do" method="GET">
+                    <ul>
+                        <% for(let i of Contact_list) { %>
+                            
+                            <li>
+                                <hr>
+                                    <!-- checkbox -->
+                                <div id="data-list">
+                                        <input type="checkbox" name="check"id="check" value='{"id":"<%= i._id %>"}' id="check"
+                                            name="scales">
+                                <!-- list items -->
+                                <div id="database-content">
+                                    <p id="print-dis"> <%= i.Description %></p>
+                                    <p> <%= i.Date %></p>
+                                </div>
+                                <div id="print-cat">
+                                    <p> <%= i.Category %></p>
+                                </div>
+                            </li>
+                         <% } %>
+                        </div>
+                    </ul>
+                            <!-- Delete button -->
+                    <div id="delete-button">
+                        <button type="submit" id="delete"><i class="fas fa-trash"></i>  Delete Task</button>
+                    </div>
+                </form>
+                </div>
+         </div>
+     </body>
+</html>
